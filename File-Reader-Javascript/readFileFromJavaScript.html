@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<h1>Read File Size and File lines from javascript</h1>
+	<input type="file" name="file" id="file"></br></br></br>
+	<b>File Name:</b><p id="filesname"></p>
+	<b>File Size:</b><p id="filessize"></p>
+	<b>Number of lines:</b><p id="lines"></p>
+</body>
+<script>
+	document.getElementById('file').onchange = function() {
+
+		var file = this.files[0];
+		document.getElementById('filesname').innerHTML = file.name;
+		document.getElementById('filessize').innerHTML = file.size + " Bytes";
+		var reader = new FileReader();
+		reader.onload = function(progressEvent) {
+			// Entire file
+			//console.log(this.result);
+
+			// By lines
+			var lines = this.result.split('\n');
+			document.getElementById('lines').innerHTML = lines.length;
+			// for(var line = 0; line < lines.length; line++){
+			//   console.log(lines[line]);
+			// }
+		};
+		reader.readAsText(file);
+	};
+</script>
+
+</html>
